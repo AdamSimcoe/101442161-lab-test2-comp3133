@@ -1,0 +1,58 @@
+<!-- Created by Adam Simcoe - 101442161 -->
+<!-- Last Updated - April 2nd, 2025 -->
+
+<div class="mission-details-container" *ngIf="mission">
+    <!-- Mission Name Field -->
+    <h2>Mission Details: {{ mission.mission_name }}</h2>
+
+    <!-- Mission Patch Image -->
+    <ng-container *ngIf="mission.links as links">
+        <img 
+            *ngIf="links.mission_patch"
+            [src]="links.mission_patch" 
+            width="150" 
+            alt="Mission Patch" 
+            class="mission-patch" 
+        />
+    </ng-container>
+    
+    <!-- Mission Details Fields -->
+    <p>Flight #{{ mission.flight_number }}</p>
+    <p>Launch Year: {{ mission.launch_year }}</p>
+    <ng-container *ngIf="mission.rocket as rocket">
+        <p>Rocket Name: {{ rocket.rocket_name }}</p>
+        <p>Rocket Type: {{ rocket.rocket_type }}</p>
+    </ng-container>
+    <ng-container *ngIf="mission.rocket?.second_stage?.payloads as payloads">
+        <ng-container *ngIf="payloads.length > 0">
+            <p>Nationality: {{ payloads[0].nationality || 'N/A' }}</p>
+            <p>Manufacturer: {{ payloads[0].manufacturer || 'N/A' }}</p>
+            <p>Payload Type: {{ payloads[0].payload_type || 'N/A' }}</p>
+            <p>Payload Mass (kg): {{ payloads[0].payload_mass_kg ?? 'N/A' }}</p>
+            <p>Orbit: {{ payloads[0].orbit || 'N/A' }}</p>
+            <p>Lifespan (years): {{ payloads[0].orbit_params?.lifespan_years ?? 'N/A' }}</p>
+        </ng-container>
+    </ng-container>
+    <p *ngIf="mission.launch_site">Launch Site: {{ mission.launch_site.site_name }}</p>
+    <p>Crew: {{ mission.crew ? mission.crew.length : 'None' }}</p>
+    <p>Launch Success: {{ mission.launch_success === true ? 'Yes' : mission.launch_success === false ? 'No' : 'Unknown' }}</p>
+    <p>Mission Details: <br>{{ mission.details || 'No mission details are available.' }}</p>
+
+    <!-- Mission Links -->
+    <div class="mission-links">
+        <ng-container *ngIf="mission.links as links">
+            <a *ngIf="links.article_link" [href]="links.article_link" target="_blank">
+            <button class="link-button">Article</button>
+            </a>
+            <a *ngIf="links.wikipedia" [href]="links.wikipedia" target="_blank">
+                <button class="link-button">Wikipedia</button>
+            </a>
+            <a *ngIf="links.video_link" [href]="links.video_link" target="_blank">
+                <button class="link-button">Video</button>
+            </a>
+        </ng-container>
+    </div>
+
+    <!-- Mission List Button -->
+    <button class="back-button" (click)="goBack()">Back to Mission List</button>
+</div>

@@ -1,0 +1,15 @@
+<!-- Created by Adam Simcoe - 101442161 -->
+<!-- Last Updated - April 2nd, 2025 -->
+
+<!-- Search Container -->
+<div class="filter-launches-container">
+    <!-- Label and Input for Launch year -->
+    <label for="yearInput">Search Launches by Launch Year:</label>
+    <input id="yearInput" type="number" [(ngModel)]="year" placeholder="ex. 2025" />
+
+    <!-- Search and Clear Buttons -->
+    <div class="search-buttons">
+        <button (click)="onFilter()">Search</button>
+        <button (click)="onClear()">Clear</button>
+    </div>
+</div>

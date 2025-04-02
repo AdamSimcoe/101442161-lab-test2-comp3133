@@ -1,0 +1,57 @@
+/* Created by Adam Simcoe - 101442161
+   Last Updated - April 2nd, 2025 */
+
+:host {
+    display: block;
+    margin-bottom: 24px;
+}
+
+.filter-launches-container {
+    background-color: #003366;
+    border: 4px solid white;
+    color: white;
+    padding: 24px;
+    max-width: 600px;
+    margin: 0 auto 24px auto;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 0 12px rgba(255, 215, 0, 0.2);
+}
+
+label {
+    font-size: 20px;
+    font-weight: bold;
+    display: block;
+    margin-bottom: 12px;
+}
+
+input[type="number"] {
+    padding: 10px 12px;
+    font-size: 16px;
+    border: none;
+    border-radius: 6px;
+    width: 60%;
+    max-width: 300px;
+    margin-bottom: 16px;
+}
+
+.search-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+}
+
+button {
+    background-color: white;
+    color: black;
+    padding: 10px 16px;
+    border: none;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: gold;
+    color: black;
+}

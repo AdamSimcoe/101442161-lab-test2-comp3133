@@ -1,0 +1,57 @@
+<!-- Created by Adam Simcoe - 101442161 -->
+<!-- Last Updated - April 2nd 2025 -->
+
+<!-- List Title -->
+<h1 class="launch-title">SpaceX Launch List</h1>
+
+<!-- Search Bar for Launch Year -->
+<app-mission-filter 
+    (filter)="onYearSelected($event)"
+    (clear)="onClearFilter()"></app-mission-filter>
+
+<div *ngFor="let launch of launches" class="mission-card">
+    <!--Launch Mission Mame and Year -->
+    <h2>Mission Name: <br>{{ launch.mission_name }}</h2>
+    <h2>Launch Date: <br>{{ launch.launch_year }}</h2>
+
+    <!-- Launch Mission Patch Image -->
+    <ng-container *ngIf="launch.links as links">
+        <img 
+            *ngIf="links.mission_patch_small"
+            [src]="links.mission_patch_small" 
+            alt="Mission Patch" 
+            width="100" 
+            class="mission-patch"
+        />
+    </ng-container>
+    
+
+    <!-- Launch Details -->
+    <p>Flight #{{ launch.flight_number }}</p>
+    <p *ngIf="launch.rocket">Rocket Name: <br>{{ launch.rocket.rocket_name }}</p>
+    <p *ngIf="launch.rocket">Rocket Type: <br>{{ launch.rocket.rocket_type }}</p>
+    <p>Details: <br>{{ launch.details || 'No launch details are available.' }}</p>
+    
+    <!-- Launch Links -->
+    <div class="launch-links">
+        <ng-container *ngIf="launch.links as links">
+            <a *ngIf="links.article_link" [href]="links.article_link" target="_blank">
+            <button class="link-button">Article</button>
+            </a>
+            <a *ngIf="links.wikipedia" [href]="links.wikipedia" target="_blank">
+                <button class="link-button">Wikipedia</button>
+            </a>
+            <a *ngIf="links.video_link" [href]="links.video_link" target="_blank">
+                <button class="link-button">Video</button>
+            </a>
+            <a *ngIf="links.mission_patch_small" [href]="links.mission_patch_small" target="_blank">
+                <button class="link-button">Patch</button>
+            </a>
+        </ng-container>
+    </div>
+
+    <!-- Mission Details Button -->
+    <a [routerLink]="['/details', launch.flight_number]">
+        <button class="details-button">View Mission Details</button>
+    </a>
+</div>
